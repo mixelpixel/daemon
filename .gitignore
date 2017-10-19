@@ -1,6 +1,9 @@
 # macOS system files
 .DS_Store
 
+# compiled binary
+daemon
+
 # Prerequisites
 *.d
 
