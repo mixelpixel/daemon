@@ -42,5 +42,13 @@ int main(int argc, char* argv[]) {
     // Return session failure
     exit(1);
   }
-  
+
+  // Change the current working directory to root
+  chdir("/");
+  // Close std, stdout and stderr
+  close(STDIN_FILENO);
+  close(STDOUT_FILENO);
+  close(STDERR_FILENO);
+  // Open a log file in write mode
+  fp = fopen("daemon_log.txt", "w+");
 }
