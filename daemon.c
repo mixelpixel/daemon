@@ -51,4 +51,14 @@ int main(int argc, char* argv[]) {
   close(STDERR_FILENO);
   // Open a log file in write mode
   fp = fopen("daemon_log.txt", "w+");
+
+  while(1) {
+    // Let the process sleep for some time to not block context switches
+    sleep(1);
+    fprint(fp, "Logging info...\n");
+    fflush(fp);
+    // Implement and call some function which does the core work for this daemon
+  }
+  fclose(fp)
+  return(0);
 }
