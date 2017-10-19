@@ -3,6 +3,8 @@
  * per http://www.thegeekstuff.com/2012/02/c-daemon-process/
  * Author: Patrick Kennedy
  * Started: October 19, 2017
+ * NOTE: invoke the daemon with sudo
+ * to kill the process, `sudo kill <process id>`
  ******************************************************************************/
 
 #include <stdio.h>
