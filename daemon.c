@@ -3,9 +3,11 @@
  * per http://www.thegeekstuff.com/2012/02/c-daemon-process/
  * Author: Patrick Kennedy
  * Started: October 19, 2017
- * NOTE: invoke the daemon with sudo if writing to root dir / (line 50)
- * current implementation of writing to home dir may not be portable
- * to kill the process, `sudo kill <process id>`
+ * NOTE: invoke the daemon with sudo if writing to root dir / (line 50).
+ * Current implementation of writing to home dir may not be portable.
+ * To kill the process, `sudo kill <process id>`.
+ * Obtain active daemon process id from console output or
+ * on macOS with the Activity Monitor (process named "daemon")
  ******************************************************************************/
 
 #include <stdio.h>
