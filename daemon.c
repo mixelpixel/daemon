@@ -4,3 +4,10 @@
  * Author: Patrick Kennedy
  * Started: October 19, 2017
  ******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
