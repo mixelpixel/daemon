@@ -11,3 +11,19 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
+
+int main(int argc, char* argv[]) {
+  FILE *fp = NULL;
+  pid_t process_id = 0;
+  pid_t sid = 0;
+
+  // Create child process
+  process_id = fork();
+
+  // Indication if fork() fails
+  if (process_id < 0) {
+    puts("The fork() failed");
+    // Return failue in exit status
+    exit(1);
+  }
+}
