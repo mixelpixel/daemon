@@ -58,6 +58,10 @@ int main(int argc, char* argv[]) {
   // Open a log file in write mode
   fp = fopen("daemon_log.txt", "w+");
 
+  // // Print the process_id to the log file
+  // // Not sure why this prints the process_id as 0, but prolly a way to extract the id for printing
+  // fprintf(fp, "Exorcise the active daemon with `$ kill %d`\n", process_id);
+
   while(1) {
     // Let the process sleep for some time to not block context switches
     sleep(1);
@@ -69,8 +73,8 @@ int main(int argc, char* argv[]) {
     // convert Unix time to local date and time
     ptr_time = localtime(&the_time);
     // printf ("Current local date and time: %s\n", asctime(ptr_time));
-    // Log the local time to the log file
-    fprintf(fp, "Logged at: %s\n", asctime(ptr_time));
+    // Log the local time to the log file (seems like asctime adds a newline)
+    fprintf(fp, "Logged at: %s", asctime(ptr_time));
     fflush(fp);
     // Implement and call some function which does the core work for this daemon
   }
