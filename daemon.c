@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
   }
 
   // unmask the file mode
-  unmask(0);
+  umask(0);
   // set a new session
   sid = setsid();
   if (sid < 0) {
@@ -55,10 +55,10 @@ int main(int argc, char* argv[]) {
   while(1) {
     // Let the process sleep for some time to not block context switches
     sleep(1);
-    fprint(fp, "Logging info...\n");
+    fprintf(fp, "Logging info...\n");
     fflush(fp);
     // Implement and call some function which does the core work for this daemon
   }
-  fclose(fp)
+  fclose(fp);
   return(0);
 }
