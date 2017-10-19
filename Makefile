@@ -4,4 +4,4 @@ daemon: clean
 	$(CC) daemon.c -o daemon
 
 clean:
-	rm daemon
+	rm -f daemon
