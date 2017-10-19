@@ -26,4 +26,12 @@ int main(int argc, char* argv[]) {
     // Return failue in exit status
     exit(1);
   }
+
+  // Parent process: need to kill it
+  if (process_id > 0) {
+    printf("process_id of child process: %d\n", process_id);
+    // Return success in exit status
+    exit(0);
+  }
+
 }
