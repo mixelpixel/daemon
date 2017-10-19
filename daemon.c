@@ -3,7 +3,8 @@
  * per http://www.thegeekstuff.com/2012/02/c-daemon-process/
  * Author: Patrick Kennedy
  * Started: October 19, 2017
- * NOTE: invoke the daemon with sudo
+ * NOTE: invoke the daemon with sudo if writing to root dir / (line 50)
+ * current implementation of writing to home dir may not be portable
  * to kill the process, `sudo kill <process id>`
  ******************************************************************************/
 
@@ -13,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <time.h>
 
 int main(int argc, char* argv[]) {
   FILE *fp = NULL;
@@ -45,8 +47,10 @@ int main(int argc, char* argv[]) {
     exit(1);
   }
 
-  // Change the current working directory to root
-  chdir("/");
+  // // Change the current working directory to root - requires sudo
+  // chdir("/");
+  // Change current working directory to home directory
+  chdir(getenv("HOME"));
   // Close std, stdout and stderr
   close(STDIN_FILENO);
   close(STDOUT_FILENO);
@@ -57,7 +61,16 @@ int main(int argc, char* argv[]) {
   while(1) {
     // Let the process sleep for some time to not block context switches
     sleep(1);
-    fprintf(fp, "Logging info...\n");
+    // Record Unix time
+    time_t the_time = time(NULL);
+    // printf("The current UNIX time: %ld\n", the_time);
+    struct tm * ptr_time;
+    time(&the_time);
+    // convert Unix time to local date and time
+    ptr_time = localtime(&the_time);
+    // printf ("Current local date and time: %s\n", asctime(ptr_time));
+    // Log the local time to the log file
+    fprintf(fp, "Logged at: %s\n", asctime(ptr_time));
     fflush(fp);
     // Implement and call some function which does the core work for this daemon
   }
