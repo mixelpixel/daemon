@@ -34,4 +34,13 @@ int main(int argc, char* argv[]) {
     exit(0);
   }
 
+  // unmask the file mode
+  unmask(0);
+  // set a new session
+  sid = setsid();
+  if (sid < 0) {
+    // Return session failure
+    exit(1);
+  }
+  
 }
